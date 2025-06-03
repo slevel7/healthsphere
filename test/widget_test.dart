@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hsadmin/main.dart';
+import 'package:healthsphere_admin/main.dart';
 
 void main() {
   testWidgets('renders login screen on startup', (WidgetTester tester) async {
