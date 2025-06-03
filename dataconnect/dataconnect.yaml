@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "hsadmin"
+location: "asia-northeast2"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "hsadmin-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
