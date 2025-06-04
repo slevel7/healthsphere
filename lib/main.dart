@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'package:healthsphere_admin/admin/manage_ai_chats.dart';
+import 'theme/app_theme.dart';
 // Admin Pages
 import 'admin/login.dart';
 import 'admin/dashboard.dart';
@@ -41,10 +42,7 @@ class HealthSphereWebApp extends StatelessWidget {
     return MaterialApp(
       title: 'HealthSphere Admin',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
       home: const RoleRedirector(), // ⬅️ Handles auth + role check
       routes: {
         '/login': (context) => const LoginPage(),

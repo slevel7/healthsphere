@@ -52,6 +52,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   Widget _statCard(String label, int count, IconData icon, Color color) {
+    final scheme = Theme.of(context).colorScheme;
     return Card(
       elevation: 3,
       margin: const EdgeInsets.all(8),
@@ -67,9 +68,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(icon, size: 36, color: Colors.white),
-            Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
-            Text('$count', style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+            Icon(icon, size: 36, color: scheme.onPrimary),
+            Text(label, style: TextStyle(color: scheme.onPrimary, fontSize: 16)),
+            Text('$count', style: TextStyle(color: scheme.onPrimary, fontSize: 24, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -78,6 +79,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: Row(
         children: [
@@ -85,9 +87,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(24),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFFB6E0FE), Color(0xFF5B8CFF)],
+                  colors: [scheme.primaryContainer, scheme.primary],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -98,10 +100,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   AppBar(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
-                    title: const Text('Admin Dashboard', style: TextStyle(color: Colors.white)),
+                    title: Text('Admin Dashboard', style: TextStyle(color: scheme.onPrimary)),
                     actions: [
                       IconButton(
-                        icon: const Icon(Icons.logout, color: Colors.white),
+                        icon: Icon(Icons.logout, color: scheme.onPrimary),
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
                           if (mounted) {
@@ -116,11 +118,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     spacing: 20,
                     runSpacing: 20,
                     children: [
-                      _statCard('Doctors', doctors, Icons.medical_services, Colors.indigo),
-                      _statCard('Patients', patients, Icons.people, Colors.teal),
-                      _statCard('Appointments', appointments, Icons.calendar_today, Colors.deepOrange),
-                      _statCard('Medicines', medicines, Icons.medication, Colors.purple),
-                      _statCard('Ambulances', ambulances, Icons.local_shipping, Colors.redAccent),
+                      _statCard('Doctors', doctors, Icons.medical_services, scheme.primary),
+                      _statCard('Patients', patients, Icons.people, scheme.secondary),
+                      _statCard('Appointments', appointments, Icons.calendar_today, scheme.tertiary),
+                      _statCard('Medicines', medicines, Icons.medication, scheme.primaryContainer),
+                      _statCard('Ambulances', ambulances, Icons.local_shipping, scheme.error),
                     ],
                   )
                 ],

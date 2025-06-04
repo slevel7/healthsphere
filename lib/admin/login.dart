@@ -82,12 +82,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
+          final scheme = Theme.of(context).colorScheme;
           return Container(
             width: constraints.maxWidth,
             height: constraints.maxHeight,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF0072B5), Color(0xFF001F54)],
+                colors: [scheme.primary, scheme.primaryContainer],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -105,12 +106,12 @@ class _LoginPageState extends State<LoginPage> {
                               vertical: 10, horizontal: 20),
                           margin: const EdgeInsets.only(bottom: 16),
                           decoration: BoxDecoration(
-                            color: Colors.red[400],
+                            color: scheme.errorContainer,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
                             _errorMessage!,
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: scheme.onErrorContainer),
                           ),
                         ),
                       Image.asset(
@@ -118,16 +119,16 @@ class _LoginPageState extends State<LoginPage> {
                         height: 100,
                       ),
                       const SizedBox(height: 12),
-                      const Text(
+                      Text(
                         'Administrator Login',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: scheme.onPrimary, fontSize: 14),
                       ),
                       const SizedBox(height: 24),
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 28),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: scheme.surface,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -138,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                 hintText: 'Email',
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: scheme.surface,
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 12),
                                 border: OutlineInputBorder(
@@ -153,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                 hintText: 'Password',
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: scheme.surface,
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 12),
                                 border: OutlineInputBorder(
@@ -167,15 +168,16 @@ class _LoginPageState extends State<LoginPage> {
                               height: 45,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black,
+                                  backgroundColor: scheme.primary,
+                                  foregroundColor: scheme.onPrimary,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                                 onPressed: _isLoading ? null : _login,
                                 child: _isLoading
-                                    ? const CircularProgressIndicator(
-                                  color: Colors.white,
+                                    ? CircularProgressIndicator(
+                                  color: scheme.onPrimary,
                                 )
                                     : const Text('Login In'),
                               ),
